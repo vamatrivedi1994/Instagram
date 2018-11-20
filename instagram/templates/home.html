@@ -1,0 +1,14 @@
+<html>
+<head>
+  <title>
+    home
+  </title>
+</head>
+<body>
+
+  <h1>Hello
+    {{ request.user.username }}
+  </h1>
+  <a href='{% url "signout" %}'>Logout</a>
+</body>
+</html>

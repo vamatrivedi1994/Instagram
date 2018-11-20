@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block nav %}
+<html>
+<head>
+  <title>
+    home
+  </title>
+  {% load static %}
+<link rel="stylesheet" type="text/css" href='{% static "instagram/style.css" %}'>
+  <style>
+
+  * {
+      box-sizing: border-box;
+  }
+
+  .column {
+      float: left;
+      width: 33%;
+      padding: 5px;
+  }
+
+  /* Clearfix (clear floats) */
+  .row::after {
+      content: "";
+      clear: both;
+      display: table;
+  }
+
+  h3 {
+    text-align: left;
+  }
+
+  #profile {
+    border-radius: 50%;
+    float: left;
+
+  }
+
+p.a {
+  word-spacing: 30px;
+}
+
+#username{
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+#photos{
+  border-radius: 5%;
+}
+
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 500px) {
+      .column {
+          width: 100%;
+      }
+  }
+</style>
+</head>
+<body>
+  <h1>
+    <br>
+    <p class="a">
+    {% for x in profile_pic %}
+    <img id ="profile" src="{{media_url}}{{ x.photo }}" width="100" height="100" >
+    {% endfor %}
+    <h1>Posts &nbsp;&nbsp;&nbsp;&nbsp;
+     Followings &nbsp;&nbsp;&nbsp;&nbsp;
+
+     Followers
+   </h1>
+   <h1>
+    &nbsp;&nbsp;  {{count_posts}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href='{% url "followerss" %}'>{{ counts }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href='{% url "followingss" %}'>{{count_followers}}</a>
+    </h1></p>
+
+    <h1 id = "username">
+    {{ username }}
+  </h1>
+<br>
+<div class="row">
+  {% for i in img %}
+  <div class="column">
+                <img id="photos" src="{{media_url}}{{ i.photo }}" style="width:100%" >
+                <br>
+
+                  </div>
+{% endfor %}
+</div>
+<br>
+<a href='{% url "profilepic" %}'>Add profile picture</a></h1>
+
+<table id="users" caption='Users'>
+{% for x in user %}
+<tr>
+<td>{{ x.username}}</td>
+<td>
+      <a href='{% url "follow" x.id %}'>Follow</a>
+      <a href='{% url "follow" x.id %}'>Unfollow</a>
+</td>
+<tr>
+
+{% endfor %}
+</table>
+  <a href='{% url "signout" %}'>Logout</a>
+</body>
+</html>
+{% endblock %}

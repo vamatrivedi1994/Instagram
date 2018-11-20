@@ -1,0 +1,44 @@
+<html>
+<head>
+  <style>
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: white;
+    border-radius: 15px;
+}
+
+li {
+    float: left;
+    padding: 10px 16px;
+}
+p.a {
+      font-style: oblique;
+      word-spacing: 30px;
+      font-size: 20px;
+    }
+
+a {
+  text-decoration: none;
+}
+
+li.b {
+  float: right;
+}
+
+  </style>
+<body>
+  <ul>
+    <li><a href = '{% url "allpost" %}'><img src="/media/desktop/icon.png" height="50px" width="50px"></a></li>
+    <li><p class="a"><a href = '{% url "allpost" %}'>Instagram</a><p></li>
+    <li class = "b" ><a href = '{% url "addpost" %}'><img src="/media/desktop/addpost.png" height="50px" width="50px"></a></li>
+    <li></li>
+  </ul>
+  {% block nav %}
+
+  {% endblock %}
+</body>
+</html>

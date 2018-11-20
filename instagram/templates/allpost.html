@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block nav %}
+<html>
+<head>
+  <title>
+    All Posts
+  </title>
+  <style>
+  <style>
+
+  .content {
+    max-width: 500px;
+    margin: auto;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2, h3,h4{
+  text-align: center;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+#photos {
+  border-radius: 5%;
+}
+
+
+
+</style>
+</head>
+<body>
+<div class= "content">
+  {% for i in img %}
+<div class= 'bl'>
+        <h2>{{ i.owner }}</h2>
+        <img id="photos" src="{{media_url}}{{ i.photo }}" style="width:50%" >
+        <a href= '{% url "like" i.id %}'><img src="/media/desktop/likes.png" alt="like" height="40px" width="40px"></img></a>
+        <a href = '{% url "comments" i.id %}'><img src="/media/desktop/comment.png" alt="like" height="40px" width="40px"></img></a>
+
+        <h2>{{ i.owner }} : {{ i.caption }}</h2>
+
+        <h3>Likes: {{ i.likes }}</h3>
+
+          {% for comment in comment %}
+            {% if comment.post == i.id %}
+            <h4>{{ comment.author }} : {{ comment.text }}</h4>
+            {% endif %}
+          {% endfor %}
+</div>
+
+
+{% endfor %}
+</div>
+</body>
+</html>
+{% endblock %}

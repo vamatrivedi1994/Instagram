@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+
+<title> Signup </title>
+
+</head>
+
+<body>
+<form method="post" action="">
+{% csrf_token %}
+<table>
+{{UserForm}}
+<br>
+{{ profilephoto_form }}
+</table>
+<input type="submit" value="Submit Form"/>
+</form>
+
+
+
+</body>
